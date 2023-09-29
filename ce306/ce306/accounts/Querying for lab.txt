@@ -1,0 +1,155 @@
+GET /bank/_search?pretty
+{
+
+"query": { "match_all": {} }
+
+}
+
+
+
+
+GET /bank/_search?pretty
+{
+  "query": { "match_all": {} },
+  "from": 10,
+  "size": 10
+}
+
+GET /bank/_search?pretty
+{
+    "query": {
+        "match" : {
+            "address" : "national street"
+        }
+    }
+}
+
+GET /bank/_search?pretty
+{
+  "query": {
+    "match": {
+      "address": {
+        "query": "national street",
+        "operator": "and"
+      }
+    }
+  }
+}
+
+GET /bank/_search?pretty
+{
+  "query": {
+    "match": {
+      "address": {
+        "query": "drive national",
+        "operator": "and"
+      }
+    }
+  }
+}
+
+GET /bank/_search?pretty
+{
+  "query": {
+    "match_phrase_prefix": {
+      "firstname": "Jo"
+      }
+    }
+}
+
+GET /bank/_search?pretty
+{
+  "query": {
+    "match_phrase": {
+      "address": "national drive"
+      }
+    }
+  }
+  
+GET /bank/_search?pretty
+{
+  "query": {
+    "multi_match": {
+      "query": "Francis",
+      "fields": ["firstname","lastname"]
+    }
+  }
+}
+
+GET /bank/_search?pretty
+{
+  "query": { "match_all": {} },
+  "sort": { "balance": { "order": "desc" } }
+}
+
+GET /bank/_search?pretty
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match_phrase_prefix": {
+          "firstname": "Jo"
+        }
+      },
+      "filter": {
+        "term": {
+          "state.keyword": "FL"
+        }
+      }
+    }
+  }
+}    
+
+GET /bank/_search?pretty
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match_phrase_prefix": {
+          "firstname": "Jo"
+        }
+      },
+      "filter": {
+        "range": {
+          "balance": {
+            "from": 11000
+          }
+        }
+      }
+    }
+  }
+}    
+
+GET /bank/_search?pretty
+{
+  "query": {
+    "bool": {
+      "filter": {
+        "range": {
+          "age": {
+            "from": 0,
+		         "to": 30
+          }
+        }
+      }
+    }
+  }    
+}
+
+GET /bank/_search?pretty
+{
+
+    "query": {
+
+        "multi_match" : {
+
+            "query" : "Clay",
+
+		  "fields": ["address", "city"]
+
+        }
+
+    }
+
+}
+

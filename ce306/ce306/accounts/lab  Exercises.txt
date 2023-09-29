@@ -1,0 +1,37 @@
+1) 
+
+
+2)
+
+{
+  "query": {
+    "bool": {
+      "filter": {
+        "range": {
+          "age": {
+            "from": 0
+		"to": 30
+          }
+        }
+      }
+    }
+  }    
+
+3)
+
+GET /bank/_search?pretty
+{
+
+    "query": {
+
+        "multi_match" : {
+
+            "query" : "Clay",
+
+		  "fields": ["address", "city"]
+
+        }
+
+    }
+
+}
